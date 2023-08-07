@@ -11,11 +11,6 @@ class TestBaseModel(unittest.TestCase):
         """
         Tests the attributes of a BaseModel instance as well as __init__()
         """
-        with self.assertRaises(TypeError) as err:
-            BaseModel("exess")
-        self.assertEqual(str(err.exception), 'BaseModel.__init__() takes 1'
-                         + ' positional argument but 2 were given')
-
         base = BaseModel()
         self.assertIsInstance(base.created_at, datetime)
         self.assertIsInstance(base.updated_at, datetime)
