@@ -3,7 +3,6 @@
 import uuid
 from datetime import datetime
 
-
 class BaseModel:
     """
     Parent class of all the rest of serializable classes
@@ -14,6 +13,9 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
+        """
+        constractor of the class Basemodel
+        """
         if len(kwargs) == 0:
             from . import storage
             self.id = str(uuid.uuid4())
