@@ -54,43 +54,30 @@ class FileStorage():
         """
         serialized = {}
         for key, value in self.__objects.items():
-            serialized[key] = obj.to_dict()
+             serialized[key] = value.to_dict()
         with open(self.__file_path, 'w', encoding='utf-8') as file:
             json.dump(serialized, file)
-
 
     def reload(self):
         """
         deserializes the JSON file to __objects, if the JSON
         file exists, otherwise nothing happens)
         """
+        from ..base_model import BaseModel
 
         class_dict = {
             'BaseModel': BaseModel,
-            'User': User,
-            'State': State,
-            'City': City,
-            'Amenity': Amenity,
-            'Place': Place,
-            'Review': Review
         }
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
 
-        if os.path.exists(self.__file_path):
+        if path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as file:
                 content = file.read()
                 if content is not None and content != '':
                     json_dict = json.loads(content)
-                    for key, value in json_dict.items():
-                        class_name = value['__class__']
-                        if class_name in class_dict:
-                            obj_class = class_dict[class_name]
-                            self.__objects[key] = obj_class(**value)
+                for key, value in json_dict.items():
+                    obj_class_name = value['__class__']
+                    obj_class = class_dict.get(obj_class_name)
+                    if obj_class:
+                        self.__objects[key] = obj_class(**value)
         else:
             pass
