@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Model for the Review class"""
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class Review(BaseModel):
@@ -17,4 +17,4 @@ class Review(BaseModel):
     text = ''
 
     def __init__(self):
-        pass
+        super().__init__()

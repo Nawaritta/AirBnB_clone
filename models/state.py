@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Model for the State class"""
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class State(BaseModel):
@@ -13,4 +13,4 @@ class State(BaseModel):
     name = ''
 
     def __init__(self):
-        pass
+        super().__init__()

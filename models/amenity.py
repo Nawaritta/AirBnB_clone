@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Model for the Amenity class"""
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
@@ -13,4 +13,4 @@ class Amenity(BaseModel):
     name = ''
 
     def __init__(self):
-        pass
+        super().__init__()

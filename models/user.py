@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Model for the User class"""
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class User(BaseModel):
@@ -19,4 +19,4 @@ class User(BaseModel):
     last_name = ''
 
     def __init__(self):
-        pass
+        super().__init__()

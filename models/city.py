@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Model for the City class"""
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class City(BaseModel):
@@ -15,4 +15,4 @@ class City(BaseModel):
     name = ''
 
     def __init__(self):
-        pass
+        super().__init__()

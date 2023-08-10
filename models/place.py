@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Model for the Place class"""
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class Place(BaseModel):
@@ -33,4 +33,4 @@ class Place(BaseModel):
     amenity_ids = []
 
     def __init__(self):
-        pass
+        super().__init__()
