@@ -82,7 +82,22 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, arg):
-        pass
+        """Shows all the created instances based or not on class name"""
+        args = arg.split()
+        if len(args) >= 1:
+            class_name = args[0]
+            if class_name not in self.__classes:
+                print('** class doesn\'t exist **')
+                return
+            instances = [
+                str(value)
+                for key, value in storage.all().items()
+                if key.startswith(class_name)
+            ]
+            print(instances)
+        else:
+            instances = list(map(str, storage.all().values()))
+            print(instances)
 
     def do_update(self, arg):
         pass
