@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Entry point of the command interperter"""
 import cmd
+from re import compile
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -9,6 +10,10 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models import storage
+
+
+def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
+    return list(map(lambda s: s.strip('" '), _pattern.findall(line)))
 
 
 class HBNBCommand(cmd.Cmd):
@@ -30,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Creates and saves a new instance"""
-        args = arg.split()
+        args = tokenize(arg)
         if len(args) == 0:
             print('** class name missing **')
             return
@@ -44,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Shows the string representation of an instance"""
-        args = arg.split()
+        args = tokenize(arg)
         if len(args) == 0:
             print('** class name missing **')
             return
@@ -60,10 +65,10 @@ class HBNBCommand(cmd.Cmd):
             print('** no instance found **')
             return
         print(storage.all()[key])
-        
+
     def do_destroy(self, arg):
         """Deletes an instance"""
-        args = arg.split()
+        args = tokenize(arg)
         if len(args) == 0:
             print('** class name missing **')
             return
@@ -83,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Shows all the created instances based or not on class name"""
-        args = arg.split()
+        args = tokenize(arg)
         if len(args) >= 1:
             class_name = args[0]
             if class_name not in self.__classes:
@@ -101,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an attribute of an instance using its class and id"""
-        args = arg.split()
+        args = tokenize(arg)
         if len(args) == 0:
             print('** class name missing **')
             return
