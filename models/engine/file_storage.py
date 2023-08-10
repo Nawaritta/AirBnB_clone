@@ -4,7 +4,7 @@ import json
 from os import path
 
 
-class FileStorage():
+class FileStorage:
     """ This class serializes instances to a JSON file and deserializes JSON file to instances
 
     Private class attributes:
@@ -33,8 +33,6 @@ class FileStorage():
         """
         return self.__objects
 
-
-
     def new(self, obj):
         """
         Adds a new object to the dictionary of serialized objects.
@@ -45,7 +43,6 @@ class FileStorage():
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
 
-
     def save(self):
         """
         Serializes and saves all objects in the dictionary to the JSON file.
@@ -54,7 +51,7 @@ class FileStorage():
         """
         serialized = {}
         for key, value in self.__objects.items():
-             serialized[key] = value.to_dict()
+            serialized[key] = value.to_dict()
         with open(self.__file_path, 'w', encoding='utf-8') as file:
             json.dump(serialized, file)
 
@@ -74,7 +71,7 @@ class FileStorage():
         from models.review import Review
         """
         class_dict = {
-                 'BaseModel': BaseModel,
+            'BaseModel': BaseModel,
         }
         """
                  'User': User,
@@ -95,5 +92,3 @@ class FileStorage():
                     obj_class = class_dict.get(obj_class_name)
                     if obj_class:
                         self.__objects[key] = obj_class(**value)
-        else:
-            pass
