@@ -52,5 +52,5 @@ There are three ways in which you can terminate the *console*:
 
 ### Authors:
 
-[**Amine Tahiri Alaoui**](https://github.com/Blxee) _email: hexninja10@gmail.com_
+[**Amine Tahiri Alaoui**](https://github.com/Blxee) _email: hexninja10@gmail.com_  
 [**Nora Ben Haddou**](https://github.com/Nawaritta) _email: Nor.Benhaddou@gmail.com_
