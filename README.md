@@ -4,7 +4,7 @@ AirBnB_clone Alx School project
 
 ### Description:
 
-The Airbnb clone project is a remake of the famous __AirBnB__ website, and it is split into multiple parts, the first of them being *The Console*.  
+The Airbnb clone project is a remake of the famous [_AirBnB_](airbnb.com) website, and it is split into multiple parts, the first of them being **The Console**.  
 The console is an interface that is meant for the developer which makes interactions with the stored data more convenient.
 
 ### Usage:
@@ -49,3 +49,8 @@ There are three ways in which you can terminate the *console*:
   - Interrupting using `Ctrl+c` **(not recommended)**
 
         (hbnb) ^C
+
+### Authors:
+
+[Amine Tahiri Alaoui](hexninja10@gmail.com)
+[Nora Ben Haddou](Nor.Benhaddou@gmail.com)
