@@ -10,4 +10,5 @@ class TestState(unittest.TestCase):
         """
         Tests the attributes of a State instance as well as __init__()
         """
-        pass
+        state = State()
+        self.assertEqual(state.name, "")
