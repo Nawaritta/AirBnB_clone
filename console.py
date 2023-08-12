@@ -187,6 +187,8 @@ class HBNBCommand(cmd.Cmd):
         """This method is called when a line is read from input.
         It directly calls the instance_dot_cmd function with the tokenized input.
         """
+        if '.' in line:
+            self.instance_dot_cmd(line)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
