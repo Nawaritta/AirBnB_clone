@@ -13,6 +13,7 @@ from models import storage
 
 
 def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
+    """Splits the arguments of a command and handles the double quote case"""
     return list(map(lambda s: s.strip('" '), _pattern.findall(line)))
 
 
