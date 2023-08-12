@@ -46,9 +46,15 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program"""
         return True
 
+    def help_quit(self):
+        print("Quit command to exit the program")
+
     def do_EOF(self, arg):
         """EOF (Ctrl+d) to exit the program"""
         return True
+
+    def help_EOF(self):
+        print("EOF (Ctrl+d) to exit the program")
 
     def do_create(self, arg):
         """Creates and saves a new instance"""
