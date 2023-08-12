@@ -19,7 +19,7 @@ def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
     if "." in line:
         dot = True
         line = line.replace(".", " ", 1)
-        line = line.replace("(", "", 1).replace(")","",1)
+        line = line.replace("(", " ", 1).replace(")", " ", 1)
 
     tokenized_list = list(map(lambda s: s.strip('" '), _pattern.findall(line)))
 
@@ -48,9 +48,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Creates and saves a new instance"""
-        print(arg)
         args = tokenize(arg)
-        print(args)
         if len(args) == 0:
             print('** class name missing **')
             return
@@ -148,27 +146,25 @@ class HBNBCommand(cmd.Cmd):
         attr_value = class_type(args[3])
         setattr(instance, attr_name, attr_value)
         instance.save()
-        '''
-    def instance_dot_cmd(self, line):
-        """Check for <class>.<cmd>(<args>) syntax and execute corresponding
-        method to execute instance
-        """
-        args = tokenize(line)
-        if args[0] == 'all':
-            self.do_all(' '.join(args[1:]))
-        elif args[0] == 'create':
-            self.do_create(' '.join(args[1:]))
-        elif args[0] == 'count':
-            self.do_count(' '.join(args[1:]))
-        elif args[0] == 'show':
-            self.do_show(' '.join(args[1:]))
-        elif args[0] == 'destroy':
-            self.do_destroy(' '.join(args[1:]))
-        elif args[0] == 'update':
-            self.do_updae(' '.join(args[1:]))
-        '''
 
-    def instance_dot_cmd(self, line):
+    def do_count(self, arg):
+        """
+        Retrieves the number of instances of a class.
+        Usage: <class name>.count()
+        """
+        args = tokenize(arg)
+        if len(args) >= 1:
+            class_name = args[0]
+            if class_name not in self.__classes:
+                print('** class doesn\'t exist **')
+                return
+            count = 0
+            for key in storage.all().keys():
+                if key.startswith(class_name + "."):
+                    count += 1
+        print(count)
+
+    def default(self, line):
         """
         Check for <class>.<cmd>(<args>) syntax and execute corresponding
         method to execute instance
@@ -176,19 +172,14 @@ class HBNBCommand(cmd.Cmd):
         args = tokenize(line)
         cmd_list = { 'all': self.do_all, 'create': self.do_create,
                      'show': self.do_show, 'destroy': self.do_destroy,
-                     'update': self.do_update
+                     'update': self.do_update, 'count':self.do_count
         }
         if args[0] in cmd_list:
             cmd_func = cmd_list[args[0]]
             cmd_func(' '.join(args[1:]))
+        else:
+            print("*** Unknown syntax:", line)
 
-
-    def onecmd(self, line):
-        """This method is called when a line is read from input.
-        It directly calls the instance_dot_cmd function with the tokenized input.
-        """
-        if '.' in line:
-            self.instance_dot_cmd(line)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
