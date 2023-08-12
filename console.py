@@ -25,7 +25,7 @@ def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
         line = line.replace(".", " ", 1).replace(",", " ")
         line = line.replace("(", " ", 1).replace(")", " ", 1)
         line = line.replace("{", " ", 1).replace("}", " ", 1)
-        line = line.replace("'", " ")
+        line = line.replace("'", " ").replace(":", "")
 
     tokenized_list = list(map(lambda s: s.strip('" '), _pattern.findall(line)))
 
@@ -148,13 +148,14 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 2:
             print('** attribute name missing **')
             return
-        attr_name = args[2]
         if len(args) == 3:
             print('** value missing **')
             return
-        class_type = type(getattr(instance, attr_name, ''))
-        attr_value = class_type(args[3])
-        setattr(instance, attr_name, attr_value)
+        for i in range(2, len(args)-1):
+            attr_name = args[i]
+            class_type = type(getattr(instance, attr_name, ''))
+            attr_value = class_type(args[i + 1])
+            setattr(instance, attr_name, attr_value)
         instance.save()
 
     def do_count(self, arg):
