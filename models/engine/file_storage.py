@@ -79,10 +79,11 @@ class FileStorage:
             'Review': Review
         }
         if path.exists(self.__file_path):
+            content = None
             with open(self.__file_path, 'r', encoding='utf-8') as file:
                 content = file.read()
-                if content is not None and content != '':
-                    json_dict = json.loads(content)
+            if content is not None and content != '':
+                json_dict = json.loads(content)
                 for key, value in json_dict.items():
                     obj_class_name = value['__class__']
                     obj_class = class_dict.get(obj_class_name)
