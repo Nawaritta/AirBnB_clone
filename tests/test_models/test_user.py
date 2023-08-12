@@ -8,6 +8,10 @@ class TestUser(unittest.TestCase):
 
     def test_init(self):
         """
-        Tests the attributes of a BaseModel instance as well as __init__()
+        Tests the attributes of a User instance as well as __init__()
         """
-        pass
+        user = User()
+        self.assertEqual(user.email, "")
+        self.assertEqual(user.password, "")
+        self.assertEqual(user.first_name, "")
+        self.assertEqual(user.last_name, "")
