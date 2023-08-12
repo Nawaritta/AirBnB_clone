@@ -15,6 +15,10 @@ from models import storage
 
 
 def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
+    """Splits the arguments of a command and handles the double quote case
+    handles the <class name>.command() case.
+    """
+
     dot = False
     if "." in line:
         dot = True
