@@ -22,8 +22,10 @@ def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
     dot = False
     if "." in line:
         dot = True
-        line = line.replace(".", " ", 1)
+        line = line.replace(".", " ", 1).replace(",", " ")
         line = line.replace("(", " ", 1).replace(")", " ", 1)
+        line = line.replace("{", " ", 1).replace("}", " ", 1)
+        line = line.replace("'", " ")
 
     tokenized_list = list(map(lambda s: s.strip('" '), _pattern.findall(line)))
 
