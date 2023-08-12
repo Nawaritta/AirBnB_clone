@@ -22,9 +22,6 @@ class FileStorage:
     __file_path = 'creatd_instances.json'
     __objects = {}
 
-    def __init__(self):
-        pass
-
     def all(self):
         """
         Returns:
@@ -32,7 +29,7 @@ class FileStorage:
         dict: A dictionary containing all serialized objects.
 
         """
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """
@@ -42,7 +39,7 @@ class FileStorage:
             obj: The object to be added to the dictionary.
         """
         key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """
@@ -51,9 +48,9 @@ class FileStorage:
 
         """
         serialized = {}
-        for key, value in self.__objects.items():
+        for key, value in FileStorage.__objects.items():
             serialized[key] = value.to_dict()
-        with open(self.__file_path, 'w', encoding='utf-8') as file:
+        with open(FileStorage.__file_path, 'w', encoding='utf-8') as file:
             json.dump(serialized, file)
 
     def reload(self):
@@ -74,9 +71,9 @@ class FileStorage:
             for cls in (BaseModel, User, State, City, Amenity, Place, Review)
         }
 
-        if path.exists(self.__file_path):
+        if path.exists(FileStorage.__file_path):
             content = None
-            with open(self.__file_path, 'r', encoding='utf-8') as file:
+            with open(FileStorage.__file_path, 'r', encoding='utf-8') as file:
                 content = file.read()
             if content is not None and content != '':
                 json_dict = json.loads(content)
@@ -84,4 +81,4 @@ class FileStorage:
                     obj_class_name = value['__class__']
                     obj_class = class_dict.get(obj_class_name)
                     if obj_class:
-                        self.__objects[key] = obj_class(**value)
+                        FileStorage.__objects[key] = obj_class(**value)
