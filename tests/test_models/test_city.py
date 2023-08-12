@@ -10,4 +10,6 @@ class TestCity(unittest.TestCase):
         """
         Tests the attributes of a City instance as well as __init__()
         """
-        pass
+        city = City()
+        self.assertEqual(city.state_id, "")
+        self.assertEqual(city.name, "")

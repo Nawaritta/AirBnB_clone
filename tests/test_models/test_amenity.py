@@ -10,4 +10,5 @@ class TestAmenity(unittest.TestCase):
         """
         Tests the attributes of a Amenity instance as well as __init__()
         """
-        pass
+        amenity = Amenity()
+        self.assertEqual(amenity.name, "")

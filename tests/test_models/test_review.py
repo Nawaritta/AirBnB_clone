@@ -10,4 +10,7 @@ class TestReview(unittest.TestCase):
         """
         Tests the attributes of a Review instance as well as __init__()
         """
-        pass
+        review = Review()
+        self.assertEqual(review.place_id, "")
+        self.assertEqual(review.user_id, "")
+        self.assertEqual(review.text, "")
