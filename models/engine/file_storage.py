@@ -70,14 +70,10 @@ class FileStorage:
         from ..review import Review
 
         class_dict = {
-            'BaseModel': BaseModel,
-            'User': User,
-            'State': State,
-            'City': City,
-            'Amenity': Amenity,
-            'Place': Place,
-            'Review': Review
+            cls.__name__: cls
+            for cls in (BaseModel, User, State, City, Amenity, Place, Review)
         }
+
         if path.exists(self.__file_path):
             content = None
             with open(self.__file_path, 'r', encoding='utf-8') as file:
