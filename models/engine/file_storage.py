@@ -72,13 +72,11 @@ class FileStorage:
         }
 
         if path.exists(FileStorage.__file_path):
-            content = None
+            json_dict = None
             with open(FileStorage.__file_path, 'r', encoding='utf-8') as file:
-                content = file.read()
-            if content is not None and content != '':
-                json_dict = json.loads(content)
+                json_dict = json.load(file)
+            if json_dict:
                 for key, value in json_dict.items():
                     obj_class_name = value['__class__']
-                    obj_class = class_dict.get(obj_class_name)
-                    if obj_class:
-                        FileStorage.__objects[key] = obj_class(**value)
+                    obj_class = class_dict[obj_class_name]
+                    FileStorage.__objects[key] = obj_class(**value)
