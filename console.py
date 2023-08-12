@@ -2,6 +2,7 @@
 """Entry point of the command interperter"""
 import cmd
 from re import compile
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -12,9 +13,24 @@ from models.review import Review
 from models import storage
 
 
+
 def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
-    """Splits the arguments of a command and handles the double quote case"""
-    return list(map(lambda s: s.strip('" '), _pattern.findall(line)))
+    """Splits the arguments of a command and handles the double quote case
+    handles the <class name>.command() case.
+    """
+
+    dot = False
+    if "." in line:
+        dot = True
+        line = line.replace(".", " ", 1)
+        line = line.replace("(", " ", 1).replace(")", " ", 1)
+
+    tokenized_list = list(map(lambda s: s.strip('" '), _pattern.findall(line)))
+
+    if dot and len(tokenized_list) >= 2:
+        tokenized_list[0], tokenized_list[1] = tokenized_list[1], tokenized_list[0]
+
+    return tokenized_list
 
 
 class HBNBCommand(cmd.Cmd):
@@ -134,6 +150,39 @@ class HBNBCommand(cmd.Cmd):
         attr_value = class_type(args[3])
         setattr(instance, attr_name, attr_value)
         instance.save()
+
+    def do_count(self, arg):
+        """
+        Retrieves the number of instances of a class.
+        Usage: <class name>.count()
+        """
+        args = tokenize(arg)
+        if len(args) >= 1:
+            class_name = args[0]
+            if class_name not in self.__classes:
+                print('** class doesn\'t exist **')
+                return
+            count = 0
+            for key in storage.all().keys():
+                if key.startswith(class_name + "."):
+                    count += 1
+        print(count)
+
+    def default(self, line):
+        """
+        Check for <class>.<cmd>(<args>) syntax and execute corresponding
+        method to execute instance
+        """
+        args = tokenize(line)
+        cmd_list = { 'all': self.do_all, 'create': self.do_create,
+                     'show': self.do_show, 'destroy': self.do_destroy,
+                     'update': self.do_update, 'count':self.do_count
+        }
+        if args[0] in cmd_list:
+            cmd_func = cmd_list[args[0]]
+            cmd_func(' '.join(args[1:]))
+        else:
+            print("*** Unknown syntax:", line)
 
 
 if __name__ == '__main__':
