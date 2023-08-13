@@ -16,17 +16,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(base.updated_at, datetime)
         self.assertIsInstance(base.id, str)
 
-    def test_save_incorrect_argsNumber(self):
-        """Tests save() method with incorrect number of arguments."""
-        with self.assertRaises(TypeError) as e:
-            BaseModel.save()
-        msg = "save() missing 1 required positional argument: 'self'"
-        self.assertEqual(str(e.exception), msg)
+    def test_save(self):
+        """Tests the save() method of a BaseModel instance"""
+        base = BaseModel()
+        with self.assertRaises(TypeError) as err:
+            base.save("exess")
+        self.assertEqual(str(err.exception), 'BaseModel.save() takes 1'
+                         + ' positional argument but 2 were given')
 
-        with self.assertRaises(TypeError) as e:
-            BaseModel.save(self, 98)
-        msg = "save() takes 1 positional argument but 2 were given"
-        self.assertEqual(str(e.exception), msg)
+        base.save()
+        self.assertNotEqual(base.created_at, base.updated_at)
 
     def test_to_dict(self):
         """Tests the to_dict() function of a BaseModel instance"""
