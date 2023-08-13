@@ -101,7 +101,7 @@ class TestFileStorage(unittest.TestCase):
             self.file_storage = FileStorage.reload(self, excessive_arg)
 
         expected_msg = "reload() takes 1 positional argument but 2 were given"
-    self.assertEqual(str(context.exception), expected_msg)
+        self.assertEqual(str(context.exception), expected_msg)
 
 
 if __name__ == '__main__':
