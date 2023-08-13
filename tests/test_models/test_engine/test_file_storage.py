@@ -83,7 +83,7 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             self.file_storage = FileStorage(*args)
 
-        expected_msg = "object() takes no parameters"
+        expected_msg = "FileStorage() takes no arguments"
         self.assertEqual(str(context.exception), expected_msg)
 
     def test_reload_no_args(self):
@@ -91,7 +91,7 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             self.file_storage = FileStorage.reload()
 
-        expected_msg = "reload() missing 1 required positional argument: 'self'"
+        expected_msg = "FileStorage.reload() missing 1 required positional argument: 'self'"
         self.assertEqual(str(context.exception), expected_msg)
 
     def test_reload_excess_args(self):
@@ -100,7 +100,7 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             self.file_storage = FileStorage.reload(self, excessive_arg)
 
-        expected_msg = "reload() takes 1 positional argument but 2 were given"
+        expected_msg = "FileStorage.reload() takes 1 positional argument but 2 were given"
         self.assertEqual(str(context.exception), expected_msg)
 
 
