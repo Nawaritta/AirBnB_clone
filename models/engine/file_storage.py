@@ -78,5 +78,6 @@ class FileStorage:
             if json_dict:
                 for key, value in json_dict.items():
                     obj_class_name = value['__class__']
-                    obj_class = class_dict[obj_class_name]
-                    FileStorage.__objects[key] = obj_class(**value)
+                    if obj_class_name in class_dict:
+                        obj_class = class_dict[obj_class_name]
+                        FileStorage.__objects[key] = obj_class(**value)
