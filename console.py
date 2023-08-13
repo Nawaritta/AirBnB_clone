@@ -165,15 +165,15 @@ class HBNBCommand(cmd.Cmd):
         """
         args = tokenize(arg)
         if len(args) >= 1:
+            count = 0
             class_name = args[0]
             if class_name not in self.__classes:
                 print('** class doesn\'t exist **')
                 return
-            count = 0
             for key in storage.all().keys():
                 if key.startswith(class_name + "."):
                     count += 1
-        print(count)
+            print(count)
 
     def default(self, line):
         """
