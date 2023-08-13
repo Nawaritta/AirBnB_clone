@@ -12,7 +12,8 @@ class TestFileStorage(unittest.TestCase):
         Tests the attributes of a FileStorage instance as well as __init__()
         """
         storage = FileStorage()
-        self.assertEqual(storage._FileStorage__file_path, 'creatd_instances.json')
+        self.assertEqual(storage._FileStorage__file_path,
+                         'creatd_instances.json')
         self.assertIsInstance(storage._FileStorage__objects, dict)
 
     def test_all(self):

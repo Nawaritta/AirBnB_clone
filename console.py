@@ -13,7 +13,6 @@ from models.review import Review
 from models import storage
 
 
-
 def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
     """Splits the arguments of a command and handles the double quote case
     handles the <class name>.command() case.
@@ -27,12 +26,12 @@ def tokenize(line, _pattern=compile(r'("[^"]*"|\s*\S+\s*)')):
         line = line.replace("{", " ", 1).replace("}", " ", 1)
         line = line.replace("'", " ").replace(":", "")
 
-    tokenized_list = list(map(lambda s: s.strip('" '), _pattern.findall(line)))
+    tok_list = list(map(lambda s: s.strip('" '), _pattern.findall(line)))
 
-    if dot and len(tokenized_list) >= 2:
-        tokenized_list[0], tokenized_list[1] = tokenized_list[1], tokenized_list[0]
+    if dot and len(tok_list) >= 2:
+        tok_list[0], tok_list[1] = tok_list[1], tok_list[0]
 
-    return tokenized_list
+    return tok_list
 
 
 class HBNBCommand(cmd.Cmd):
@@ -181,10 +180,10 @@ class HBNBCommand(cmd.Cmd):
         method to execute instance
         """
         args = tokenize(line)
-        cmd_list = { 'all': self.do_all, 'create': self.do_create,
-                     'show': self.do_show, 'destroy': self.do_destroy,
-                     'update': self.do_update, 'count':self.do_count
-        }
+        cmd_list = {'all': self.do_all, 'create': self.do_create,
+                    'show': self.do_show, 'destroy': self.do_destroy,
+                    'update': self.do_update, 'count': self.do_count}
+
         if args[0] in cmd_list:
             cmd_func = cmd_list[args[0]]
             cmd_func(' '.join(args[1:]))

@@ -47,7 +47,6 @@ class TestHBNBCommand(unittest.TestCase):
             result = cmd.do_EOF("")
         self.assertTrue(result)
 
-
     def test_emptyline(self):
         """Tests emptyline functionality."""
         with patch('sys.stdout', new=StringIO()) as f:
