@@ -18,6 +18,10 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         """Tests the save() method of a BaseModel instance"""
+        with self.assertRaises(TypeError) as err:
+            BaseModel.save()
+        self.assertEqual(str(err.exception), "save() missing 1 required"
+                         + " positional argument 'self'")
         base = BaseModel()
         with self.assertRaises(TypeError) as err:
             base.save("exess")
