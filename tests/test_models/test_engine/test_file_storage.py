@@ -148,11 +148,11 @@ class TestFileStorage(unittest.TestCase):
             pass
         storage.save()
         self.assertTrue(path.isfile(file_name))
-        BaseModel().save()
         try:
             os.remove(file_name)
         except:
             pass
+        BaseModel().save()
         self.assertTrue(path.isfile(file_name))
 
     def test_reload(self):
