@@ -152,4 +152,8 @@ class TestFileStorage(unittest.TestCase):
             storage.reload("exess")
         self.assertEqual(str(err.exception), 'reload() takes 1'
                          + ' positional argument but 2 were given')
-        storage.reload()
+        try:
+            storage.reload()
+        except:
+            self.fail("reload failed")
+
