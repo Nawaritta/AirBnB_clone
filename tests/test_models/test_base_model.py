@@ -18,6 +18,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         """Tests the save() method of a BaseModel instance"""
+        self.assertTrue(hasattr(BaseModel, 'save'))
         with self.assertRaises(TypeError) as err:
             BaseModel.save()
         self.assertEqual(str(err.exception), "save() missing 1 required"
