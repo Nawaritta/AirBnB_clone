@@ -1,5 +1,6 @@
 import unittest
 from os import path
+from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 """Module for the FileStorage class tests"""
 
@@ -119,6 +120,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(str(err.exception), 'all() takes 1'
                          + ' positional argument but 2 were given')
         self.assertEqual(storage.all(), storage._FileStorage__objects)
+        storage.all()
 
     def test_new(self):
         storage = FileStorage()
@@ -130,6 +132,7 @@ class TestFileStorage(unittest.TestCase):
             storage.new("obj", "exess")
         self.assertEqual(str(err.exception), 'new() takes 2'
                          + ' positional arguments but 3 were given')
+        storage.new(BaseModel())
 
     def test_save(self):
         storage = FileStorage()
@@ -138,6 +141,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(str(err.exception), 'save() takes 1'
                          + ' positional argument but 2 were given')
         storage.save()
+        BaseModel.save()
         file_name = storage._FileStorage__file_path
         self.assertTrue(path.exists(file_name))
 
@@ -147,3 +151,4 @@ class TestFileStorage(unittest.TestCase):
             storage.reload("exess")
         self.assertEqual(str(err.exception), 'reload() takes 1'
                          + ' positional argument but 2 were given')
+        storage.reload()
