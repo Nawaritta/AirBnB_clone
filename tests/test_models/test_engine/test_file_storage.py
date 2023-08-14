@@ -141,8 +141,9 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(str(err.exception), 'save() takes 1'
                          + ' positional argument but 2 were given')
         storage.save()
-        self.assertIsNone(BaseModel().save())
         file_name = storage._FileStorage__file_path
+        self.assertTrue(path.exists(file_name))
+        BaseModel().save()
         self.assertTrue(path.exists(file_name))
 
     def test_reload(self):
