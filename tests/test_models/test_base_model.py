@@ -21,7 +21,7 @@ class TestBaseModel(unittest.TestCase):
         with self.assertRaises(TypeError) as err:
             BaseModel.save()
         self.assertEqual(str(err.exception), "save() missing 1 required"
-                         + " positional argument 'self'")
+                         + " positional argument: 'self'")
         base = BaseModel()
         with self.assertRaises(TypeError) as err:
             base.save("exess")
