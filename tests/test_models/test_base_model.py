@@ -21,7 +21,7 @@ class TestBaseModel(unittest.TestCase):
         base = BaseModel()
         with self.assertRaises(TypeError) as err:
             base.save("exess")
-        self.assertEqual(str(err.exception), 'save() takes 1'
+        self.assertEqual(str(err.exception), 'BaseModel.save() takes 1'
                          + ' positional argument but 2 were given')
 
         base.save()
