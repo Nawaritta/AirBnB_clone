@@ -156,12 +156,14 @@ class TestFileStorage(unittest.TestCase):
             os.remove(file_name)
         except:
             pass
-        BaseModel().save()
+        base = BaseModel().save()
         self.assertTrue(path.isfile(file_name))
 
+        json_dict = None
         with open(file_name, 'r', encoding='utf-8') as file:
             json_dict = json.load(file)
-            self.assertIsInstance(json_dict, dict)
+        expected_dict = {f'BaseModel.{base.id}': base.to_dict()}
+        self.assertEqual(json_dict, expected_dict)
 
 
     def test_reload(self):
@@ -172,6 +174,6 @@ class TestFileStorage(unittest.TestCase):
                          + ' positional argument but 2 were given')
         try:
             storage.reload()
+            self.assertTrue(True)
         except:
             self.fail("reload failed")
-
