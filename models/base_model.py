@@ -14,6 +14,12 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
+        """
+        Constructor for the BaseModel class
+        Args:
+            *args: all the unamed arguments
+            **kwargs: all the keyword arguments
+        """
         if kwargs is None or len(kwargs) == 0:
             from . import storage
             self.id = str(uuid.uuid4())
