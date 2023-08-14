@@ -133,7 +133,10 @@ class TestFileStorage(unittest.TestCase):
             storage.new("obj", "exess")
         self.assertEqual(str(err.exception), 'new() takes 2'
                          + ' positional arguments but 3 were given')
-        storage.new(BaseModel())
+        base = BaseModel()
+        storage.new(base)
+        key = f'BaseModel.{base.id}'
+        self.assertTrue(key in storage._FileStorage__objects)
 
     def test_save(self):
         storage = FileStorage()
