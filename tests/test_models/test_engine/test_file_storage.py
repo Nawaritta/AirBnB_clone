@@ -1,5 +1,6 @@
 import os
 import unittest
+import json
 from os import path
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
@@ -157,6 +158,11 @@ class TestFileStorage(unittest.TestCase):
             pass
         BaseModel().save()
         self.assertTrue(path.isfile(file_name))
+
+        with open(file_name, 'r', encoding='utf-8') as file:
+            json_dict = json.load(file)
+            self.assertIsInstance(json_dict, dict)
+
 
     def test_reload(self):
         storage = FileStorage()
