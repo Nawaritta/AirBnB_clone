@@ -1,3 +1,4 @@
+import os
 import unittest
 from os import path
 from models.base_model import BaseModel
@@ -140,10 +141,18 @@ class TestFileStorage(unittest.TestCase):
             storage.save("exess")
         self.assertEqual(str(err.exception), 'save() takes 1'
                          + ' positional argument but 2 were given')
-        storage.save()
         file_name = storage._FileStorage__file_path
+        try:
+            os.remove(file_name)
+        except:
+            pass
+        storage.save()
         self.assertTrue(path.isfile(file_name))
         BaseModel().save()
+        try:
+            os.remove(file_name)
+        except:
+            pass
         self.assertTrue(path.isfile(file_name))
 
     def test_reload(self):
