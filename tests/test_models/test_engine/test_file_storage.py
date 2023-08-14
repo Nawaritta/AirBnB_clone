@@ -156,7 +156,8 @@ class TestFileStorage(unittest.TestCase):
             os.remove(file_name)
         except:
             pass
-        base = BaseModel().save()
+        base = BaseModel()
+        base.save()
         self.assertTrue(path.isfile(file_name))
 
         json_dict = None
