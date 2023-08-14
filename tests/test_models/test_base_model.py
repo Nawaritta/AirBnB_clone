@@ -31,9 +31,10 @@ class TestBaseModel(unittest.TestCase):
 
         from time import sleep
         base = BaseModel()
+        pre_updated_at = base.updated_at
         sleep(1)
         base.save()
-        self.assertNotEqual(base.created_at, base.updated_at)
+        self.assertNotEqual(pre_updated_at, base.updated_at)
 
     def test_to_dict(self):
         """Tests the to_dict() function of a BaseModel instance"""
