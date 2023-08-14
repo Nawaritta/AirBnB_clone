@@ -21,9 +21,12 @@ class TestBaseModel(unittest.TestCase):
         base = BaseModel()
         with self.assertRaises(TypeError) as err:
             base.save("exess")
-        self.assertEqual(str(err.exception), 'BaseModel.save() takes 1'
+        self.assertEqual(str(err.exception), 'save() takes 1'
                          + ' positional argument but 2 were given')
 
+        from time import sleep
+        base = BaseModel()
+        sleep(1)
         base.save()
         self.assertNotEqual(base.created_at, base.updated_at)
 
