@@ -10,5 +10,10 @@ class TestState(unittest.TestCase):
         """
         Tests the attributes of a State instance as well as __init__()
         """
+        with self.assertRaises(TypeError) as err:
+            State.__init__()
+
         state = State()
         self.assertEqual(state.name, "")
+
+        self.assertIsInstance(state.name, str)

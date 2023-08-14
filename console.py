@@ -179,6 +179,8 @@ class HBNBCommand(cmd.Cmd):
         Check for <class>.<cmd>(<args>) syntax and execute corresponding
         method to execute instance
         """
+        if line == '':
+            return
         args = tokenize(line)
         cmd_list = {'all': self.do_all, 'create': self.do_create,
                     'show': self.do_show, 'destroy': self.do_destroy,

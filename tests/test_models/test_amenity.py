@@ -10,5 +10,10 @@ class TestAmenity(unittest.TestCase):
         """
         Tests the attributes of a Amenity instance as well as __init__()
         """
+        with self.assertRaises(TypeError) as err:
+            Amenity.__init__()
+
         amenity = Amenity()
         self.assertEqual(amenity.name, "")
+
+        self.assertIsInstance(amenity.name, str)
