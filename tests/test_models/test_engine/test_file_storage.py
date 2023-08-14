@@ -120,7 +120,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(str(err.exception), 'all() takes 1'
                          + ' positional argument but 2 were given')
         self.assertEqual(storage.all(), storage._FileStorage__objects)
-        storage.all()
+        self.assertIsInstance(storage.all(), dict)
 
     def test_new(self):
         storage = FileStorage()
