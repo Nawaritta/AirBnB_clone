@@ -27,6 +27,7 @@
 
 .filters > .locations,
 .filters > .amenities {
+  position: relative;
   display: inline-block;
   width: 25%;
   height: 100%;
@@ -49,4 +50,27 @@
 
 .filters > :first-child {
   border-right: 1px solid #DDDDDD;
+}
+
+.filters ul {
+  list-style: none;
+}
+
+.filters .popover {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background-color: #FAFAFA;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  text-align: start;
+  top: 100%;
+  margin: 0px;
+  padding: 20px;
+  padding-left: 40px;
+}
+
+.locations:hover .popover,
+.amenities:hover .popover {
+  display: block;
 }
