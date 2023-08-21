@@ -72,6 +72,7 @@ At the end of this project, you are expected to be able to explain to anyone, **
 
 
 ### 0\. Inline styling
+
 ![](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2021/12/98f4ac1b0644512ce7ae91a9e8e61e8fe174911d.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230820%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230820T190219Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bfee5efa861e71b627aa8a189f96db3448c2dd549902d1fdd55a3b7da78959c2)
 
 ### 1\. Head styling
@@ -80,6 +81,7 @@ At the end of this project, you are expected to be able to explain to anyone, **
 
 
 ### 3\. Zoning done!
+
 ![](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2021/12/2be1eda05a0d9097c210f2d3482a59aa858c5711.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230820%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230820T190219Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bfd9afc70683b8c4053ff093b085b3a4a630939c75a4312ffc757ac3dceca09c)
 
 ### 4\. Search!
