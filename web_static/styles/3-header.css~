@@ -1,0 +1,16 @@
+header {
+    background-color: #FF0000;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+}
+.logo {
+    width: 70px; /* Set the width of your logo */
+    height: 70px; /* Set the height of your logo */
+    background-image: url("../images/logo.png"); /* Path to your logo image */
+    background-position: left center;
+    background-repeat: no-repeat;
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
