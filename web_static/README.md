@@ -7,9 +7,9 @@ Front-end
   Weight: 1
    Project will start Aug 17, 2023 4:00 AM, must end by Aug 22, 2023 4:00 AM
     Manual QA review must be done (request it when you are done with the project)
-```
-Concepts
-```
+
+## Concepts
+
    _For this project, we expect you to look at these concepts:_
 
  - HTML/CSS
