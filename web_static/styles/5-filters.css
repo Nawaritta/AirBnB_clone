@@ -3,32 +3,36 @@
     height: 70px;
     width: 100%;
     border: 1px solid #DDDDDD;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 30px;
+    border-radius: 4px;;
 }
 
+.locations h3,
+.amenities h3 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: left;
+    margin-left: 30px;
+}
+.locations h4,
+.amenities h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: left;
+    margin-left: 30px;
+}
+
+.locations {
+    border-right: 1px solid #DDDDDD;
+}
 .locations,
 .amenities {
     height: 100%;
     width: 25%;
-    padding: 15px;
-    border-right: 1px solid #DDDDDD;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-}
-
-h3 {
-    font-weight: 600;
-}
-
-h4 {
-    font-weight: 400;
-    font-size: 14px;
+    float: left;
 }
 
 .search-button {
@@ -39,11 +43,9 @@ h4 {
     width: 20%;
     border: none;
     border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 30px;
+    margin: 11px 30px;
     transition: opacity 0.3s;
+    float: right;
 }
 
 .search-button:hover {
