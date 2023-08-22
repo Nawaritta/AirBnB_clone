@@ -16,9 +16,7 @@
     font-size: 30px;
     margin-top: 0;
 }
-.place1,
-.place2,.place3
-{
+.places article {
     width: 390px;
     padding: 20px;
     margin: 20px;
